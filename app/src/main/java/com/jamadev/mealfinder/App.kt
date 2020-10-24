@@ -1,4 +1,6 @@
 package com.jamadev.mealfinder
 
-class App {
+import android.app.Application
+
+object App:Application() {
 }
