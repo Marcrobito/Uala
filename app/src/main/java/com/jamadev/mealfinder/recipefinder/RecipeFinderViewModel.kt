@@ -12,7 +12,6 @@ import javax.inject.Inject
 class RecipeFinderViewModel(var repository: MealsRepository): ViewModel() {
 
     fun getViewIsLoaded(){
-        //repository.setFinderViewModel(this, this.viewModelScope )
         val data = viewModelScope.launch(Dispatchers.IO) {
             repository.fetchFinderData("Pasta")
         }
