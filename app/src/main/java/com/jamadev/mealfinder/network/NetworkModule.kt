@@ -1,7 +1,5 @@
 package com.jamadev.mealfinder.network
 
-
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.jamadev.mealfinder.base.NetworkEnvironment
 import com.jamadev.mealfinder.base.environment
 import dagger.Module
@@ -47,7 +45,6 @@ class NetworkModule() {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(client)
             .build()
     }
