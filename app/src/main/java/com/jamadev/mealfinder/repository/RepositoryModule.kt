@@ -1,5 +1,6 @@
 package com.jamadev.mealfinder.repository
 
+import com.jamadev.mealfinder.network.RecipesApi
 import dagger.Module
 import dagger.Provides
 
@@ -7,6 +8,6 @@ import dagger.Provides
 class RepositoryModule {
 
     @Provides
-    fun providesMealsRepository():MealsRepository = Repository()
+    fun providesMealsRepository(network:RecipesApi):MealsRepository = Repository(network)
 
 }
