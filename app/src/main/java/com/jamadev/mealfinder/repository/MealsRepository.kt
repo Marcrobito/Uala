@@ -1,8 +1,9 @@
 package com.jamadev.mealfinder.repository
 
+import com.jamadev.mealfinder.models.Meal
 import com.jamadev.mealfinder.models.Meals
-import retrofit2.Response
 
 interface MealsRepository {
-    suspend fun fetchFinderData(query:String): Meals
+    suspend fun fetchFinderData(query: String): Meals
+    suspend fun fetchMealData(id: String): Meal
 }

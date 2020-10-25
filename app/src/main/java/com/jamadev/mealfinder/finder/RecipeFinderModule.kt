@@ -1,10 +1,8 @@
-package com.jamadev.mealfinder.recipefinder
+package com.jamadev.mealfinder.finder
 
 import com.jamadev.mealfinder.repository.MealsRepository
-import com.jamadev.mealfinder.repository.Repository
 import dagger.Module
 import dagger.Provides
-import javax.inject.Inject
 
 @Module
 class RecipeFinderModule {

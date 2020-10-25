@@ -8,14 +8,14 @@
 
         <variable
             name="viewModel"
-            type="com.jamadev.mealfinder.recipefinder.RecipeFinderViewModel" />
+            type="com.jamadev.mealfinder.finder.RecipeFinderViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".recipefinder.RecipeFinderFragment">
+        tools:context=".finder.RecipeFinderFragment">
 
 
         <TextView
@@ -36,6 +36,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:drawableStart="@drawable/ic_find"
+            android:drawablePadding="4dp"
             android:ems="10"
             android:hint="@string/find_hint"
             android:inputType="text"

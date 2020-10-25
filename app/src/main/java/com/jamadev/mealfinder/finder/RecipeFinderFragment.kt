@@ -1,24 +1,26 @@
-package com.jamadev.mealfinder.recipefinder
+package com.jamadev.mealfinder.finder
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jamadev.mealfinder.App
+import com.jamadev.mealfinder.R
 import com.jamadev.mealfinder.base.BaseFragment
 import com.jamadev.mealfinder.base.MealsListAdapter
 import com.jamadev.mealfinder.base.OnMealSelectedListener
 import com.jamadev.mealfinder.databinding.FragmentRecipeFinderBinding
 import javax.inject.Inject
 
+private const val TAG = "RecipeFinderFragment"
 
 class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
 
-    private val TAG = "RecipeFinderFragment"
+
 
     @Inject
     lateinit var viewModel:RecipeFinderViewModel
@@ -50,7 +52,8 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
     }
 
     override fun onMealSelected(mealId: String) {
-        Log.d(TAG, "$mealId the meal")
+        val bundle = bundleOf("mealId" to mealId)
+        binding.root.findNavController().navigate(R.id.presentMealDetail, bundle)
     }
 
 

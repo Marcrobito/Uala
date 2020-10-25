@@ -7,7 +7,21 @@
 
     <fragment
         android:id="@+id/recipeFinderFragment"
-        android:name="com.jamadev.mealfinder.recipefinder.RecipeFinderFragment"
+        android:name="com.jamadev.mealfinder.finder.RecipeFinderFragment"
         android:label="fragment_recipe_finder"
-        tools:layout="@layout/fragment_recipe_finder" />
+        tools:layout="@layout/fragment_recipe_finder" >
+        <action
+            android:id="@+id/presentMealDetail"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailFragment"
+        android:name="com.jamadev.mealfinder.detail.MealDetailFragment"
+        android:label="fragment_meal_detail"
+        tools:layout="@layout/fragment_meal_detail" >
+        <argument
+            android:name="mealId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
