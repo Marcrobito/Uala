@@ -3,6 +3,7 @@ package com.jamadev.mealfinder.base
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jamadev.mealfinder.databinding.ItemRecipeBinding
 import com.jamadev.mealfinder.models.Meal
 

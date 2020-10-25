@@ -74,7 +74,7 @@
             android:background="@color/translucent_black"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:visibility="@{ viewModel.showLoading? View.VISIBLE : View.GONE}"
+            visible="@{viewModel.showLoading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
