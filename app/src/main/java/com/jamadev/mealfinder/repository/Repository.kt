@@ -7,6 +7,5 @@ import javax.inject.Singleton
 @Singleton
 class Repository(private val network:RecipesApi) : MealsRepository {
     override suspend fun fetchFinderData(query: String): Meals = network.getMeals(query)
-
 }
 
