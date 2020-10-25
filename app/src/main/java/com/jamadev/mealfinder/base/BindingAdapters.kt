@@ -1,7 +1,8 @@
 package com.jamadev.mealfinder.base
 
-import android.media.Image
+import android.util.Log
 import android.view.View
+import android.webkit.WebView
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -15,4 +16,10 @@ fun View.bindVisible(visible: Boolean?) {
 @BindingAdapter("url")
 fun ImageView.loadUrl(url:String){
     Glide.with(this).load(url).into(this)
+}
+
+@BindingAdapter("web_url")
+fun WebView.loadUrl(url:String?){
+    Log.d("MealDetailViewModel", url?:"dou'h")
+    url?:loadUrl(url)
 }

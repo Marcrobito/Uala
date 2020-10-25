@@ -4,5 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="find_hint">Search Recipe</string>
     <string name="search">Search</string>
-    <string name="ingredient">Pepperonni</string>
+    <string name="ingredient">Pepperoni</string>
+    <string name="meal_directions">Instructions:</string>
+    <string name="meal_ingredients">Ingredients:</string>
 </resources>
