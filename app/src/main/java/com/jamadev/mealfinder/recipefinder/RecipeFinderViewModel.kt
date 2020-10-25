@@ -11,12 +11,20 @@ import javax.inject.Inject
 
 class RecipeFinderViewModel(var repository: MealsRepository): ViewModel() {
 
+    private val TAG = "RecipeFinderViewModel"
     fun getViewIsLoaded(){
-        val data = viewModelScope.launch(Dispatchers.IO) {
-            repository.fetchFinderData("Pasta")
+
+
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.d(TAG, "***************that's weird***************")
+            val data = repository.fetchFinderData("Pasta")
+            Log.d(TAG, "***************that's weird***************")
+            Log.d(TAG, data.toString())
         }
 
-        Log.d("data", data.toString())
+
+
+
 
     }
 

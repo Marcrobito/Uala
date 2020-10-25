@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface RecipesApi {
 
     @GET("search.php?s=")
-    suspend fun getMeals(@Query("s") query:String): Response<Meals>
+    suspend fun getMeals(@Query("s") query:String): Meals
 
 
 }
