@@ -7,11 +7,12 @@ import com.jamadev.mealfinder.databinding.ItemRecipeBinding
 import com.jamadev.mealfinder.models.Meal
 
 
-class MealsListAdapter(private val meals: List<Meal>) :RecyclerView.Adapter<MealsListAdapter.ViewHolder>() {
+class MealsListAdapter(private val meals: List<Meal>,
+                       private val listener:OnMealSelectedListener ) :RecyclerView.Adapter<MealsListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        return ViewHolder(ItemRecipeBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+        return ViewHolder(ItemRecipeBinding.inflate(LayoutInflater.from(parent.context),parent, false),listener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -23,13 +24,20 @@ class MealsListAdapter(private val meals: List<Meal>) :RecyclerView.Adapter<Meal
     override fun getItemCount() = meals.size
 
 
-    class ViewHolder(private val binding: ItemRecipeBinding) :RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemRecipeBinding, private val listener: OnMealSelectedListener) :RecyclerView.ViewHolder(binding.root) {
 
         fun bind(meal: Meal){
             binding.meal = meal
+            binding.root.setOnClickListener {
+                listener.onMealSelected(meal.idMeal)
+            }
         }
 
     }
 
 
+}
+
+interface OnMealSelectedListener {
+    fun onMealSelected(mealId:String)
 }
