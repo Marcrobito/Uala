@@ -46,11 +46,14 @@ class MealDetailFragment : BaseFragment() {
     ): View? {
 
         binding = FragmentMealDetailBinding.inflate(inflater, container, false)
+        //binding.mealDetail.viewModel = viewModel
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         if (mealId != null) {
             viewModel.idIsSet(mealId!!)
+        }else{
+            Log.d(TAG, "----------------------");
         }
 
         return binding.root

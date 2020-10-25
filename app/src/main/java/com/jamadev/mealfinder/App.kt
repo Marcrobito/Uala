@@ -3,7 +3,9 @@ package com.jamadev.mealfinder
 import android.app.Application
 import com.jamadev.mealfinder.network.NetworkModule
 import com.jamadev.mealfinder.repository.RepositoryModule
+import javax.inject.Singleton
 
+@Singleton
 class App:Application() {
 
     private lateinit var component: AppComponent

@@ -10,6 +10,6 @@ interface RecipesApi {
     @GET("search.php?s=")
     suspend fun getMeals(@Query("s") query: String): Meals
 
-    @GET("lookup.php?i")
-    suspend fun getMeal(@Query("i") id: String): Meal
+    @GET("lookup.php?")
+    suspend fun getMeal(@Query("i") id: Int): Meals
 }
