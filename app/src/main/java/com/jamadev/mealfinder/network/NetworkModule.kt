@@ -10,11 +10,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+private const val TAG = "NetworkModule"
 @Module
 class NetworkModule {
-
-    private val TAG = "NetworkModule"
 
     private val baseUrl = when(environment){
         NetworkEnvironment.Production -> "https://www.themealdb.com/api/json/v1/1/"
@@ -28,7 +26,6 @@ class NetworkModule {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient().newBuilder().addInterceptor(interceptor).addInterceptor{
             try{
-                Log.e(TAG, "providesClient")
                 it.proceed(
                     it.request().newBuilder().build()
                 )

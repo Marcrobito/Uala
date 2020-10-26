@@ -1,5 +1,9 @@
 package com.jamadev.mealfinder.models
 
+import com.jamadev.mealfinder.base.OnMealSelectedListener
+
+
+data class ReducedMeal(val id: String?, val thumb:String?, val name:String?)
 data class Meal( val idMeal: String,
                  val strMeal: String,
                  val strDrinkAlternate: String,
@@ -54,3 +58,9 @@ data class Meal( val idMeal: String,
 )
 
 data class Meals(val meals:List<Meal> )
+
+data class MealsAdapterObject(
+    val meals: List<Meal>,
+    val listener: OnMealSelectedListener
+)
+

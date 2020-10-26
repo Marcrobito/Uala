@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jamadev.mealfinder.App
 import com.jamadev.mealfinder.R
 import com.jamadev.mealfinder.base.BaseFragment
-import com.jamadev.mealfinder.base.MealsListAdapter
 import com.jamadev.mealfinder.base.OnMealSelectedListener
-import com.jamadev.mealfinder.base.loadUrl
 import com.jamadev.mealfinder.databinding.FragmentRecipeFinderBinding
+import com.jamadev.mealfinder.models.ReducedMeal
 import com.jamadev.mealfinder.service.RandomMealService
 import javax.inject.Inject
 
@@ -41,17 +40,22 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
     ): View? {
 
         showBackButton(false)
+        val manager = LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
+        viewModel.setListener(this)
 
         binding = FragmentRecipeFinderBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        binding.recyclerView.layoutManager = manager
 
-        viewModel.meals.observe(viewLifecycleOwner) {
-            val adapter = MealsListAdapter(it, this)
-            val manager = LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
-            binding.recyclerView.layoutManager = manager
-            binding.recyclerView.adapter = adapter
-            hideKeyboard()
+        viewModel.showLoading.observe(viewLifecycleOwner){
+            if(it) hideKeyboard()
+        }
+        //TODO find a work around
+        viewModel.randomMeal.observe(viewLifecycleOwner){ meal ->
+            binding.include.root.setOnClickListener {
+                onMealSelected(meal.id!!)
+            }
         }
 
         val filter = IntentFilter()
@@ -59,18 +63,14 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
 
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
-                //TODO Move this to view model
-                binding.include.mealTitle.text =  intent.getStringExtra("meal")?:""
-                if(  intent.getStringExtra("thumb") != null){
-                    binding.include.imageView.loadUrl(intent.getStringExtra("thumb")!!)
-                }
-                binding.include.id=intent.getStringExtra("mealId")
-                binding.include.root.setOnClickListener {
-                    onMealSelected(intent.getStringExtra("mealId")!!)
-                }
+                val meal = ReducedMeal(
+                    intent.getStringExtra("mealId"),
+                    intent.getStringExtra("thumb"),
+                    intent.getStringExtra("meal")
+                )
+                viewModel.broadCastReceived(meal)
             }
         }
-
         activity?.registerReceiver(receiver, filter)
         return binding.root
     }
@@ -78,5 +78,10 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
     override fun onMealSelected(mealId: String) {
         val bundle = bundleOf("mealId" to mealId)
         binding.root.findNavController().navigate(R.id.presentMealDetail, bundle)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.setListener(null)
     }
 }

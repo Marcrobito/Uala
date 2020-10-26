@@ -1,10 +1,14 @@
 package com.jamadev.mealfinder.presentation.finder
 
+import android.content.BroadcastReceiver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jamadev.mealfinder.base.OnMealSelectedListener
 import com.jamadev.mealfinder.models.Meal
+import com.jamadev.mealfinder.models.MealsAdapterObject
+import com.jamadev.mealfinder.models.ReducedMeal
 import com.jamadev.mealfinder.repository.MealsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,8 +20,8 @@ private const val TAG = "RecipeFinderViewModel"
 @Singleton
 class RecipeFinderViewModel(var repository: MealsRepository) : ViewModel() {
 
-    private val _meals = MutableLiveData<List<Meal>>()
-    val meals: LiveData<List<Meal>> get() = _meals
+    private val _randomMeal = MutableLiveData<ReducedMeal>()
+    val randomMeal: LiveData<ReducedMeal> get() = _randomMeal
 
     private val _showLoading = MutableLiveData<Boolean>()
     val showLoading: LiveData<Boolean> get() = _showLoading
@@ -25,9 +29,18 @@ class RecipeFinderViewModel(var repository: MealsRepository) : ViewModel() {
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> get() = _message
 
+    private var listener:OnMealSelectedListener? = null
+
+    private val _mealsAdapterObject = MutableLiveData<MealsAdapterObject>()
+    val mealsAdapterObject : LiveData<MealsAdapterObject> get() = _mealsAdapterObject
+
     init {
         _showLoading.value = false
         _message.value = ""
+    }
+
+    fun setListener(listener:OnMealSelectedListener?){
+        this.listener= listener
     }
 
     fun findRecipeButtonClicked(queryString: String) {
@@ -40,10 +53,14 @@ class RecipeFinderViewModel(var repository: MealsRepository) : ViewModel() {
             _showLoading.value = false
             if (data == null) {
                 _message.value = "The recipe was not found, try another search"
-            } else {
-                _meals.value = data
+            } else if(listener != null) {
+                _mealsAdapterObject.value = MealsAdapterObject(data, listener!!)
             }
         }
+    }
+
+    fun broadCastReceived(meal: ReducedMeal) {
+        if (meal.id != null) _randomMeal.value = meal
     }
 
 
