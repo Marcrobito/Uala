@@ -35,5 +35,7 @@ fun RecyclerView.setMealsAdapter(mealsAdapterObject: MealsAdapterObject?){
 @BindingAdapter("web_url")
 fun WebView.loadUrl(url: String?) {
     Log.d("MealDetailViewModel", url ?: "dou'h")
-    url ?: loadUrl(url)
+    if (url != null){
+        loadUrl(url)
+    }
 }

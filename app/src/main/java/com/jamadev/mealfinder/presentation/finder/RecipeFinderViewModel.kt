@@ -63,5 +63,4 @@ class RecipeFinderViewModel(var repository: MealsRepository) : ViewModel() {
         if (meal.id != null) _randomMeal.value = meal
     }
 
-
 }
