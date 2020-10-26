@@ -12,4 +12,7 @@ interface RecipesApi {
 
     @GET("lookup.php?")
     suspend fun getMeal(@Query("i") id: Int): Meals
+
+    @GET("random.php")
+    suspend fun getRandomMeal(): Meals
 }

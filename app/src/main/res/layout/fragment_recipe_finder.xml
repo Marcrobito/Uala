@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
 
         <variable
             name="viewModel"
@@ -35,12 +34,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:autofillHints="@string/ingredient"
             android:drawableStart="@drawable/ic_find"
             android:drawablePadding="4dp"
             android:ems="10"
             android:hint="@string/find_hint"
             android:inputType="text"
-            android:autofillHints="@string/ingredient"
             app:layout_constraintEnd_toStartOf="@+id/find_recipe_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -50,8 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="@string/search"
             android:onClick="@{ () -> viewModel.findRecipeButtonClicked(recipeString.getText().toString())}"
+            android:text="@string/search"
             app:layout_constraintBottom_toBottomOf="@+id/recipeString"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/recipeString" />
@@ -69,13 +68,13 @@
 
 
         <LinearLayout
+            visible="@{viewModel.showLoading}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/translucent_black"
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:visibility="gone"
-            visible="@{viewModel.showLoading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,9 +91,9 @@
 
         <include
             android:id="@+id/include"
-            layout="@layout/random_recipe"
+            layout="@layout/random_meal"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -7,4 +7,5 @@
     <string name="ingredient">Pepperoni</string>
     <string name="meal_directions">Instructions:</string>
     <string name="meal_ingredients">Ingredients:</string>
+    <string name="featured">Featured Meal</string>
 </resources>

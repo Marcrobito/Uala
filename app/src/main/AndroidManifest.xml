@@ -16,6 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MealFinder"
         tools:ignore="Instantiatable">
+        <service android:name=".service.RandomMealService"
+            android:icon="@drawable/ic_cooking"
+            android:label="@string/app_name"/>
+
+        <receiver android:name=".service.RandomMealReceiver">
+
+        </receiver>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
