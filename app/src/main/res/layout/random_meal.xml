@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="id"
             type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/gray"
+        visible="@{id!=null}"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:background="@color/gray">
 
         <ImageView
             android:id="@+id/imageView"

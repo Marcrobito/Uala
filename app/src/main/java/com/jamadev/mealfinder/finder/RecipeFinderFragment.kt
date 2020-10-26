@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,8 +45,6 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        //binding.include
-
         viewModel.meals.observe(viewLifecycleOwner) {
             val adapter = MealsListAdapter(it, this)
             val manager = LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
@@ -64,6 +60,7 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
                 if(  intent.getStringExtra("thumb") != null){
                     binding.include.imageView.loadUrl(intent.getStringExtra("thumb")!!)
                 }
+                binding.include.id=intent.getStringExtra("mealId")
                 binding.include.root.setOnClickListener {
                     onMealSelected(intent.getStringExtra("mealId")!!)
                 }
@@ -71,8 +68,6 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
         }
 
         activity?.registerReceiver(receiver, filter)
-
-
         return binding.root
     }
 
