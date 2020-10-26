@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipeFinderFragment"
-        android:name="com.jamadev.mealfinder.finder.RecipeFinderFragment"
+        android:name="com.jamadev.mealfinder.presentation.finder.RecipeFinderFragment"
         android:label="fragment_recipe_finder"
         tools:layout="@layout/fragment_recipe_finder" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mealDetailFragment"
-        android:name="com.jamadev.mealfinder.detail.MealDetailFragment"
+        android:name="com.jamadev.mealfinder.presentation.detail.MealDetailFragment"
         android:label="fragment_meal_detail"
         tools:layout="@layout/fragment_meal_detail" >
         <argument

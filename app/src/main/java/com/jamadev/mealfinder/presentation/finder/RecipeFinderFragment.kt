@@ -1,4 +1,4 @@
-package com.jamadev.mealfinder.finder
+package com.jamadev.mealfinder.presentation.finder
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -21,7 +21,6 @@ import com.jamadev.mealfinder.databinding.FragmentRecipeFinderBinding
 import com.jamadev.mealfinder.service.RandomMealService
 import javax.inject.Inject
 
-
 private const val TAG = "RecipeFinderFragment"
 
 class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
@@ -41,6 +40,8 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
 
+        showBackButton(false)
+
         binding = FragmentRecipeFinderBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -50,12 +51,15 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
             val manager = LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
             binding.recyclerView.layoutManager = manager
             binding.recyclerView.adapter = adapter
+            hideKeyboard()
         }
 
         val filter = IntentFilter()
         filter.addAction(RandomMealService.ACTION)
+
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
+                //TODO Move this to view model
                 binding.include.mealTitle.text =  intent.getStringExtra("meal")?:""
                 if(  intent.getStringExtra("thumb") != null){
                     binding.include.imageView.loadUrl(intent.getStringExtra("thumb")!!)
@@ -75,6 +79,4 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
         val bundle = bundleOf("mealId" to mealId)
         binding.root.findNavController().navigate(R.id.presentMealDetail, bundle)
     }
-
-
 }

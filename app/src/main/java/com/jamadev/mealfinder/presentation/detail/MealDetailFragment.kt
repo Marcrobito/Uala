@@ -1,4 +1,4 @@
-package com.jamadev.mealfinder.detail
+package com.jamadev.mealfinder.presentation.detail
 
 import android.content.Context
 import android.os.Bundle
@@ -39,9 +39,13 @@ class MealDetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        showBackButton(true)
+
         binding = FragmentMealDetailBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+
 
         if (mealId != null) {
             viewModel.idIsSet(mealId!!)

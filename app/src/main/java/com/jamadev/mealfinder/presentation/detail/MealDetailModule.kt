@@ -1,4 +1,4 @@
-package com.jamadev.mealfinder.detail
+package com.jamadev.mealfinder.presentation.detail
 
 import com.jamadev.mealfinder.repository.MealsRepository
 import dagger.Module

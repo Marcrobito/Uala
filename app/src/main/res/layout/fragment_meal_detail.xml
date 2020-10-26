@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jamadev.mealfinder.detail.MealDetailViewModel" />
+            type="com.jamadev.mealfinder.presentation.detail.MealDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".detail.MealDetailFragment">
+        tools:context=".presentation.detail.MealDetailFragment">
 
         <ScrollView
             android:id="@+id/scrollView3"

@@ -1,4 +1,4 @@
-package com.jamadev.mealfinder.finder
+package com.jamadev.mealfinder.presentation.finder
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
