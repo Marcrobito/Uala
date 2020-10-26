@@ -48,11 +48,11 @@ class RecipeFinderFragment : BaseFragment(), OnMealSelectedListener {
         binding.lifecycleOwner = this
         binding.recyclerView.layoutManager = manager
 
-        viewModel.showLoading.observe(viewLifecycleOwner){
-            if(it) hideKeyboard()
+        viewModel.showLoading.observe(viewLifecycleOwner) {
+            if (it) hideKeyboard()
         }
         //TODO find a work around
-        viewModel.randomMeal.observe(viewLifecycleOwner){ meal ->
+        viewModel.randomMeal.observe(viewLifecycleOwner) { meal ->
             binding.include.root.setOnClickListener {
                 onMealSelected(meal.id!!)
             }
