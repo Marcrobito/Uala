@@ -24,7 +24,6 @@ class MealDetailFragment : BaseFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (activity?.application as App).getComponent().inject(this)
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,17 +39,14 @@ class MealDetailFragment : BaseFragment() {
     ): View? {
 
         showBackButton(true)
-
         binding = FragmentMealDetailBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-
-
         if (mealId != null) {
             viewModel.idIsSet(mealId!!)
         } else {
-            //TODO implement a onFailure method
+            activity?.onBackPressed()
         }
         return binding.root
     }
